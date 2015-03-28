@@ -15,9 +15,10 @@ export LC_ALL=en_US.UTF-8
 
 # Install essential packages from Apt
 
-#Repositorio para PostGis y sus dependencias
+#Repositorio para PostGis, node y sus dependencias
 add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
-apt-get update -y
+sudo add-apt-repository -y ppa:chris-lea/node.js
+apt-get install -y nodejs npm
 # Python dev packages
 apt-get install -y build-essential python python-dev python-setuptools python-pip
 # Dependencies for image processing with Pillow (drop-in replacement for PIL)
@@ -25,6 +26,7 @@ apt-get install -y build-essential python python-dev python-setuptools python-pi
 apt-get install -y libjpeg-dev libtiff-dev zlib1g-dev libfreetype6-dev liblcms2-dev
 # Git (we'd rather avoid people keeping credentials for git commits in the repo, but sometimes we need it for pip requirements that aren't in PyPI)
 apt-get install -y git
+apt-get install -y
 
 # Postgresql
 if ! command -v psql; then
@@ -58,14 +60,7 @@ if [[ ! -e /home/vagrant/.pip_download_cache ]]; then
 fi
 
 # Node.js, CoffeeScript and LESS
-if ! command -v npm; then
-    wget http://nodejs.org/dist/v0.10.0/node-v0.10.0.tar.gz
-    tar xzf node-v0.10.0.tar.gz
-    cd node-v0.10.0/
-    ./configure && make && make install
-    cd ..
-    rm -rf node-v0.10.0/ node-v0.10.0.tar.gz
-fi
+
 if ! command -v coffee; then
     npm install -g coffee-script
 fi
