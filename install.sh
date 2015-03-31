@@ -53,6 +53,7 @@ sudo -u postgres psql postgres -d postgres -c "ALTER USER postgres with password
 # install django:
 apt-get install -y python3-pip
 pip3 install django
+pip3 install psycopg2
 
 
 
